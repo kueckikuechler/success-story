@@ -117,6 +117,10 @@ body {
         margin-top: auto;
     }
 
+    &__product p:nth-child(3) {
+        margin-top: .5rem;
+    }
+
     // verteilt die Zeilen 'title' und 'nr-year-code' zwischen
     // der Zeile 'product' und 'btn'  
     // &__product {
