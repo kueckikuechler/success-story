@@ -1,0 +1,156 @@
+// Colors
+$clr-neutral-100: white;
+$clr-neutral-200: #f7f7f7;
+$clr-neutral-500: #efefef;
+$clr-neutral-900: #212121;
+$clr-accent-400: #4087ac;
+
+// Font-families
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;700&display=swap');
+$ff-sans: 'Source Sans Pro', sans-serif;
+
+// font-sizes
+$fs-900: 3.75rem;   // 60px
+$fs-800: 3rem;      // 48px
+$fs-700: 2.25rem;   // 36px
+$fs-600: 1.8rem;    // 24px
+$fs-500: 1.3125rem; // 21px
+$fs-400: 1.125rem;  // 18px
+$fs-300: 1rem;  // 16px
+$fs-200: .8rem;  // 16px
+
+// font-weights
+$fw-300: 300;
+$fw-400: 400;
+$fw-700: 700;
+
+// size/spacing values (Including the border-width)
+$size-8: 0.5rem; 
+$size-12: 0.75rem; // (not in design)
+$size-16: 1rem;
+$size-20: 1.25rem; 
+$size-32: 2rem;  
+$size-36: 2.25rem;
+
+// Basic reset
+*,
+*::before,
+*::after {
+    box-sizing: border-box;    
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    font: inherit;
+}
+
+img {
+    width: 100%;
+    display: block;
+}
+
+body {
+    font-family: $ff-sans;
+    font-size: $fs-400;
+    font-weight: $fw-300;
+    color: $clr-neutral-900;
+    background: $clr-neutral-100;
+}
+
+// Card design
+.cards {
+    width: min(100% - 4rem, 1280px);
+    margin-block: 3rem;
+    margin-inline: auto;
+
+    display: grid;
+    gap: 1.5rem;
+
+    @media (min-width: 560px) { // 2-spaltig
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 940px) { // 3-spaltig
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (min-width: 1200px) { // 4-spaltig
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.card {
+    border: 1px solid $clr-neutral-500;
+    border-radius: 1rem;
+    overflow: hidden; // damit die abgerundeten Ecken nicht vom Bild überdeckt werden
+    padding-bottom: 2rem;
+
+    background: $clr-neutral-200;
+    
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    
+    &__img-container {
+        background: $clr-neutral-100;
+        width: 100%;
+    }
+    
+    &__img {
+        height: 300px;
+        object-fit: scale-down;        
+    }
+
+    // Ein padding auf .card funktioniert nicht wegen dem Bild, 
+    // da das bis zum Rand gehen muss, darum auf die einzelnen Elemente
+    // ein margin von 2rem setzen
+    &__product,
+    &__title,
+    &__nr-year-code,
+    .btn {
+        margin-inline: 2rem;
+    }
+
+    // Button mit flex und margin-top nach unten drücken (unten ausgerichtet)
+    .btn {        
+        margin-top: auto;
+    }
+
+    // verteilt die Zeilen 'title' und 'nr-year-code' zwischen
+    // der Zeile 'product' und 'btn'  
+    // &__product {
+    //     margin-bottom: auto;
+    // }
+
+    &__naming {
+        font-size: $fs-200;
+        font-weight: $fw-700;
+    }
+
+    &__title {
+        font-size: $fs-600;
+        font-weight: $fw-400;
+    }
+
+    &__nr-year-code {
+        display: flex;
+        gap: 2rem;
+    }
+}
+
+.btn {
+    align-self: flex-start;
+    color: $clr-neutral-100;
+    font-weight: $fw-400;
+    background: $clr-accent-400;
+    padding: .5em 1em;
+    border: 0;
+    border-radius: .3rem;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+        background: darken($clr-accent-400, 10);
+    }
+}
